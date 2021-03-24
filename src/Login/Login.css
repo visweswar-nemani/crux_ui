@@ -1,0 +1,13 @@
+
+
+.bckg{
+    background: url(../assets/homepage_bckgd.png);
+    object-fit: fill;
+    /* background-image: '../assets/homepage_bckgd.png'; */
+    /* filter: brightness(0.5); */
+    /* Create the parallax scrolling effect */
+    background-attachment: scroll;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:contain ;
+}
