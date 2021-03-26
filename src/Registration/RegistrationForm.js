@@ -12,7 +12,7 @@ import axios from 'axios';
 
 // const { Formik } = Formik;
 
-const REGISTER_API = 'http://localhost:8080/register';
+const REGISTER_API = 'http://ec2-3-21-128-229.us-east-2.compute.amazonaws.com:8080/register';
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
