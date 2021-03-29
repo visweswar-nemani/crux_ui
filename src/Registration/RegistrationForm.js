@@ -12,7 +12,8 @@ import axios from 'axios';
 
 // const { Formik } = Formik;
 
-const REGISTER_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/register';
+//const REGISTER_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/register';
+const REGISTER_API = 'http://localhost:8080/register';
 
 const schema = yup.object().shape({
   firstName: yup.string().required(),
@@ -40,6 +41,11 @@ function RegistrationForm(props) {
 
       axios.post(REGISTER_API, values).then(response => {
         console.log("result is ", response.data)
+        if(response.data.status==='Failure'){
+          alert('Registration failed. '+ response.data.errorDescription)
+        }else{
+          alert('Registration Success. An email with OTP was sent to your email.')
+        }
       }).catch(error => {
         console.log(error)
       })
@@ -243,7 +249,7 @@ function RegistrationForm(props) {
                     {errors.terms}
                   </Form.Control.Feedback>
                 </Form.Group>
-                <Button type="submit">Submit</Button>
+                <Button variant='warning' type="submit">Submit</Button>
               </Form>
             )}
           </Formik>

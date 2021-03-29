@@ -8,7 +8,6 @@ import * as yup from 'yup';
 import {React,useEffect,useState} from 'react'
 
 import { FormControl } from 'react-bootstrap';
-import { render } from '@testing-library/react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,30 +19,49 @@ const schema = yup.object().shape({
     password: yup.string().required(),
 })
 
-const LOGIN_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/authenticate'
+//const LOGIN_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/authenticate'
+const LOGIN_API='http://localhost:8080/authenticate'
+
+
 
 function Login(props) {
 
+    const [loginFailure,setLoginFailure] =useState(false)
+
     const history = useHistory();
 
-    //const [loginStatus,setloginStatus] = useState({status:'',username:''});
+    //console.log("the props in login modal are ", props)
 
     function check(values){
         
         //setloginStatus( )
         console.log(values)
         axios.post(LOGIN_API,values).then( response => {
-            props.onHide();
-            console.log('player logged in :',values)
-            history.push("/login",{
-                status:'allowed',username:'viswa'            
-            })
+            
+            //console.log('player logged in :',response)
+            if(response.data.status!=='FAILURE'){
+                props.onHide();
+                history.push("/login",{
+                    status:'allowed',username:values.email            
+                })
+            }else{
+                setLoginFailure(true)
+            }
+
+
         }).catch(error =>{
             console.log('login error occured ',error)
             
         })
 
     }
+
+    useEffect(()=>{
+        if(loginFailure===true){
+            setLoginFailure(false);
+        }
+        
+    },[props.show,loginFailure])
 
 
   
@@ -99,8 +117,11 @@ function Login(props) {
                                         <FormControl.Feedback type='invalid'>{errors.password}</FormControl.Feedback>
                                     </Form.Group>
                                 </Form.Row> 
+                                {loginFailure &&
+                                    <Form.Row >Username/Password is Wrong</Form.Row>
+                                }
                                 <Form.Row>                               
-                                    <Button  type="submit">Submit</Button>
+                                    <Button variant='warning' type="submit">Submit</Button>
                                 </Form.Row>
                             </Form>
                         )}                        
@@ -113,5 +134,5 @@ function Login(props) {
 }
 
 
-render(<Login />);
+
 export default Login
