@@ -7,8 +7,8 @@ import  '../Home/Home.css';
 
 
 
-const GET_ACCOUNT_DATA_API='http://localhost:8080/getAccountData'
-//const GET_ACCOUNT_DATA_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/getAccountData'
+//const GET_ACCOUNT_DATA_API='http://localhost:8080/getAccountData'
+const GET_ACCOUNT_DATA_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/getAccountData'
 
 
 function Home(props) {
@@ -53,44 +53,47 @@ function Home(props) {
     
 
     if(loginStatus && loginStatus.status==='allowed' && !isLoggedout){
-
-        const accordion_accountData = accountData.map(acc_data =>
-            <>
-                    <Accordion defaultActiveKey="1">
-                        <Card>
-                            <Accordion.Toggle as={Card.Header} eventKey="0">
-                                {acc_data.accountType}
-                            </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="0">
-                            <Card.Body>  
-                                <Row>
-                                    <Col>
-                                        Account Id:  {acc_data.account_id}  
-                                    </Col>
-                                    <Col>
-                                        Balance :{acc_data.balance} USD
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col>
-                                        <Button variant='warning'>Transfer</Button>
-                                    </Col>
-                                    <Col>
-                                    <Button variant='warning'>Transaction History</Button>
-                                    </Col>
-                                </Row>                        
-                                                         
-                            </Card.Body>
-                            </Accordion.Collapse>
-                        </Card>
-                    </Accordion>
-            </>
-        );
+        let accordion_accountData='No data found'
+        if(accountData!= null && accountData.length>0){    
+            console.log("THE ACCOUNT DATA IS ", accountData)    
+             accordion_accountData = accountData.map(acc_data =>
+                <>
+                        <Accordion defaultActiveKey="1">
+                            <Card>
+                                <Accordion.Toggle as={Card.Header} eventKey="0">
+                                    {acc_data.accountType}
+                                </Accordion.Toggle>
+                                <Accordion.Collapse eventKey="0">
+                                <Card.Body>  
+                                    <Row>
+                                        <Col>
+                                            Account Id:  {acc_data.account_id}  
+                                        </Col>
+                                        <Col>
+                                            Balance :{acc_data.balance} USD
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                            <Button variant='warning'>Transfer Amount</Button>
+                                        </Col>
+                                        <Col>
+                                        <Button variant='warning'>Transaction History</Button>
+                                        </Col>
+                                    </Row>                        
+                                                            
+                                </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
+                </>
+            );
+        }
         
         return (
             <div className='home_bckg'>
                 <Navbar expand='lg'>
-                    <Navbar.Brand href="#home">Welcome {loginStatus.username} !!</Navbar.Brand>
+                    <Navbar.Brand >Welcome {loginStatus.username} !!</Navbar.Brand>
                     {/* <Navbar.Toggle /> */}
                     <Navbar.Collapse className="justify-content-end">
                         <DropdownButton id="dropdown-basic-button" variant='warning' size='sm' title={loginStatus.username}>
@@ -101,7 +104,7 @@ function Home(props) {
                 </Navbar>
                 <Container>
                         Your Accounts:
-                        {accordion_accountData}
+                        {accountData!==null && accordion_accountData}
                         
 
                   
