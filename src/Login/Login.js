@@ -19,8 +19,8 @@ const schema = yup.object().shape({
     password: yup.string().required(),
 })
 
-const LOGIN_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/authenticate'
-//const LOGIN_API='http://localhost:8080/authenticate'
+//const LOGIN_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/authenticate'
+const LOGIN_API='http://localhost:8080/authenticate'
 
 
 

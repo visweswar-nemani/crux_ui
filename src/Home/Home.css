@@ -1,15 +1,5 @@
 .home_bckg{
     background: url(../assets/homepage_bckgd.png);
-    /* object-fit: fill;
-
-    background-attachment: scroll;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size:auto ; */
-
-
-
-
     min-height:100vh;
     display: flex;
     width: 100%;
