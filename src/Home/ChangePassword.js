@@ -12,7 +12,8 @@ const schema = yup.object().shape({
 })
 
 
-const CHANGE_PASSWORD_API = 'http://localhost:8080/changePassword'
+// const CHANGE_PASSWORD_API = 'http://localhost:8080/changePassword'
+const CHANGE_PASSWORD_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/changePassword'
 
 function ChangePassword(props) {
 

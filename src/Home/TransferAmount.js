@@ -6,7 +6,9 @@ import { Modal, Form, Row, Col, InputGroup,Button } from 'react-bootstrap'
 import * as yup from 'yup'
 
 
-const DO_TRANSFER_API='http://localhost:8080/doTransfer'
+// const DO_TRANSFER_API='http://localhost:8080/doTransfer'
+
+const DO_TRANSFER_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/doTransfer'
 
 
 const schema = yup.object().shape({
@@ -19,7 +21,7 @@ const schema = yup.object().shape({
 function TransferAmount(props) {
 
     function submitData(values) {
-        //console.log('clicked function',values)
+        console.log('clicked function',values)
         axios.post(DO_TRANSFER_API,values).then(  response=>{
             //console.log('response of do transfer ',response)
             if(response.data.status==='SUCCESS'){
@@ -30,8 +32,7 @@ function TransferAmount(props) {
             console.log('error while transferring amounrt',error)
         })
     }
-
-
+    
     return (
         <Modal {...props} size='lg' aria-labelledby="contained-modal-title-vcenter" centered backdrop='static' keyboard='false'>
             <div className='reg'>

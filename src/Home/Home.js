@@ -13,9 +13,12 @@ import _isEqual from 'lodash';
 
 
 
-const GET_ACCOUNT_DATA_API='http://localhost:8080/getAccountData'
-//const GET_ACCOUNT_DATA_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/getAccountData'
-const GET_FORCE_CHANGE_PASSWORD_API='http://localhost:8080/forceChangePassword'
+// const GET_ACCOUNT_DATA_API='http://localhost:8080/getAccountData'
+// const GET_FORCE_CHANGE_PASSWORD_API='http://localhost:8080/forceChangePassword'
+
+const GET_ACCOUNT_DATA_API = 'http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/getAccountData'
+const GET_FORCE_CHANGE_PASSWORD_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/forceChangePassword'
+
 
 function Home(props) {
 
@@ -105,6 +108,11 @@ function Home(props) {
         setShowAmountTransferModal(true)
         SetsenderAccountId(data)
     }
+
+    function openTransactionHistoryModal(data){
+        setShowTransactionHistory(true)
+        SetsenderAccountId(data)
+    }
     
 
     if(loginStatus && loginStatus.status==='allowed' && !isLoggedout){
@@ -133,7 +141,7 @@ function Home(props) {
                                             <Button variant='warning' onClick={()=>openAccountTransferModal(acc_data.account_id)} >Transfer Amount</Button>
                                         </Col>
                                         <Col>
-                                        <Button variant='warning' onClick={()=> setShowTransactionHistory(true)}>Transaction History</Button>
+                                        <Button variant='warning' onClick={()=> openTransactionHistoryModal(acc_data.account_id)}>Transaction History</Button>
                                         </Col>
                                     </Row>                  
                                 </Card.Body>
@@ -164,7 +172,7 @@ function Home(props) {
                 <ChangePassword show={showChangePassword} onHide={() =>setShowChangePassword(false)} email={loginStatus.username} isforcechangepassword={forceChangePassword.toString()}></ChangePassword>
                 <Profile show={showProfileData} onHide={() =>setShowProfileData(false)} email={loginStatus.username}></Profile>
                 <TransferAmount  show={showAmountTransferModal} onHide={() =>setShowAmountTransferModal(false)} sender_accountid={senderAccountId} updateBalance={() =>setIsFetchAccountDataRequired(true)}></TransferAmount>
-                <TransactionHistory  show={showTransactionHistory} onHide={() =>setShowTransactionHistory(false)}  ></TransactionHistory>
+                <TransactionHistory  show={showTransactionHistory} onHide={() =>setShowTransactionHistory(false)} sender_accountid={senderAccountId} ></TransactionHistory>
             </div>
         )
     } else{

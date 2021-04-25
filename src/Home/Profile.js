@@ -17,9 +17,11 @@ const schema = yup.object().shape({
     zip: yup.string().required(),
 })
 
-const GET_PROFILE_DATA_API='http://localhost:8080/getProfileData'  
+// const GET_PROFILE_DATA_API='http://localhost:8080/getProfileData'  
+// const POST_PROFILE_DATA_API ='http://localhost:8080/setProfileData'
 
-const POST_PROFILE_DATA_API ='http://localhost:8080/setProfileData'
+const GET_PROFILE_DATA_API='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/getProfileData'  
+const POST_PROFILE_DATA_API ='http://ec2-18-223-1-4.us-east-2.compute.amazonaws.com:8080/setProfileData'
 
 
 function Profile(props) {
