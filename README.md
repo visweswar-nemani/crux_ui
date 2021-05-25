@@ -1,3 +1,18 @@
+# General Introduction about the Project :
+
+Crux Bank UI is a bank web application where customers can access their accounts and perform any required steps like Money Transfer, Balance Check and Transaction History etc. Application was developed in an easy way of access to customers like starting with a welcome page where it has signup, login and forgot password options using which customers will get into the application and can perform different necessary actions from their respective account. After the necessary actions were done the customer can log out from the account.
+
+Technologies In the CRUX Bank App the welcome page was designed and built using html,CSS,Java Script, React JS and React-Bootstrap. Home page was designed using nav bar, accordion and bootstrap components for dropdown. Backend API's where created using spring JPA ORM and HSQL in the database for storing data.
+
+# Installation :
+1)Download and install Node.js(version>=13.0) into your machine from https://nodejs.org/en/.
+2)Clone the repository into your machine.
+3) Navigate to the repository and enter script "npm init" in terminal/command prompt. This will install all the dependencies required for the project into your machine.
+4) Now we can exectue below standard scripts to run/test/build the application.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
