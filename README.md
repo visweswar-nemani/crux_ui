@@ -7,7 +7,7 @@ Technologies In the CRUX Bank App the welcome page was designed and built using 
 # Installation :
 1)Download and install Node.js(version>=13.0) into your machine from https://nodejs.org/en/.
 2)Clone the repository into your machine.
-3) Navigate to the repository and enter script "npm init" in terminal/command prompt. This will install all the dependencies required for the project into your machine.
+3) Navigate to the repository and enter script "npm install" in terminal/command prompt. This will install all the dependencies required for the project into your machine.
 4) Now we can exectue below standard scripts to run/test/build the application.
 
 
